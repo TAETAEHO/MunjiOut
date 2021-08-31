@@ -12,11 +12,6 @@ module.exports = {
     res.json({ data: { accessToken, data }, message: "ok" });
   },
   isAuthorized: (req) => {
-    const isCookie = req.headers.cookie;
-    // console.log(isCookie);
-    if (!isCookie) {
-      return null;
-    }
     const authorization = req.headers.cookie
       .split("; ")[0]
       .split("accessToken=")[1];
