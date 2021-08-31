@@ -1,6 +1,10 @@
 const crypto = require("crypto");
 const db = require("../../models");
-const { generateAccessToken, generateRefreshToken, isAuthorized } = require("../tokenFunctions");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+  isAuthorized,
+} = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
   // console.log('++++++++++++\n', req.body);
@@ -15,7 +19,9 @@ module.exports = async (req, res) => {
   const { email, password } = req.body;
   // 이메일, 비밀번호 중 하나라도 입력하지 않았을 경우
   if (!email || !password) {
-    return res.status(417).send({ message: "please fill in all the required fields." });
+    return res
+      .status(417)
+      .send({ message: "please fill in all the required fields." });
   }
 
   try {
@@ -24,31 +30,39 @@ module.exports = async (req, res) => {
     });
 
     // 가입된 유저가 아닐 경우
-    if (!isUser) { 
-        return res.status(404).send({ message: "invalid user" });
+    if (!isUser) {
+      return res.status(404).send({ message: "invalid user" });
     } else {
-        const dbPassword = isUser.password;
-        const salt = isUser.salt;
-        let hashedPassword = crypto
-          .pbkdf2Sync(password, salt, 9999, 64, "sha512")
-          .toString("base64");
-        if (hashedPassword !== dbPassword) {
-          return res.status(400).json({ message: "please check your password and try again" });
-        } else {
-          const accessToken = generateAccessToken(isUser.dataValues);
-          const refreshToken = generateRefreshToken(isUser.dataValues);
-          const cookieOptions = {
-            httpOnly: true,
-            sameSite: "None",
-            // secure: true,
-          };
+      const dbPassword = isUser.password;
+      const salt = isUser.salt;
+      let hashedPassword = crypto
+        .pbkdf2Sync(password, salt, 9999, 64, "sha512")
+        .toString("base64");
+      if (hashedPassword !== dbPassword) {
+        return res
+          .status(400)
+          .json({ message: "please check your password and try again" });
+      } else {
+        const accessToken = generateAccessToken(isUser.dataValues);
+        const refreshToken = generateRefreshToken(isUser.dataValues);
+        const cookieOptions = {
+          httpOnly: true,
+          sameSite: "None",
+          // secure: true,
+        };
 
-          res.cookie("accessToken", accessToken, cookieOptions);
-          res.cookie("refreshToken", refreshToken, cookieOptions);
-          // console.log(req.headers.cookie);
-          return res.status(200).json({ accessToken, refreshToken, message: "logged in successfully" });
-        }
+        res.cookie("accessToken", accessToken, cookieOptions);
+        res.cookie("refreshToken", refreshToken, cookieOptions);
+        // console.log(req.headers.cookie);
+        return res
+          .status(200)
+          .json({
+            accessToken,
+            refreshToken,
+            message: "logged in successfully",
+          });
       }
+    }
   } catch (err) {
     console.error(err);
   }

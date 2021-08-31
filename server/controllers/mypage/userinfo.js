@@ -3,6 +3,7 @@ const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
   try {
+    console.log(req.body);
     const accessTokenData = isAuthorized(req);
     console.log("accessData :", accessTokenData);
 
