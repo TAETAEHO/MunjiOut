@@ -4,6 +4,7 @@ const crypto = require("crypto");
 
 module.exports = async (req, res) => {
   try {
+    // console.log(req);
     const accessTokenData = isAuthorized(req);
 
     if (!accessTokenData) {
