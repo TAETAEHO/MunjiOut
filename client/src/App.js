@@ -10,15 +10,28 @@ import { getRegExp } from "korean-regexp";
 import axios from "axios";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isStared, setIsStared] = useState([]);
   const [isSearched, setIsSearched] = useState([]);
   const LN = LocationName.map((el) => el.locationName);
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultIdx, setSearchResultIdx] = useState(-1);
+  const [accessToken, setAccessToken] = useState(null);
+  const [userinfo, setUserinfo] = useState({
+    id: "",
+    username: "",
+    email: "",
+    mobile: "",
+    address: "",
+  });
   // ! Loaidng #1
   // const [isLoading, setIsLoading] = useState([]);
+
+  const getAccessToken = (token) => {
+    setAccessToken(token);
+  };
+  console.log("Token :", accessToken);
 
   // * Logout을 클릭하면, isLogin => false
   const handleLogout = (e) => {
@@ -61,14 +74,15 @@ function App() {
       setIsStared(isSearched.slice(curValue, curValue + 1).concat(isStared));
       setIsSearched(isSearched.filter((el, idx) => idx !== curValue));
 
+      console.log("🟢", accessToken);
       const setLocationURL = "https://localhost:4000/setLocation";
       const setLocationPayload = {
         location_name: isSearched[curValue].stationName,
       };
       const setLocationConfig = {
         headers: {
-          "Content-Type":
-            "application/x-www-form-urlencoded; charset=UTF-8;application/json",
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
         },
         withCredentials: true,
       };
@@ -168,6 +182,23 @@ function App() {
     }
   };
 
+  const getUserinfo = () => {
+    axios
+      .get("https://localhost:4000/userinfo", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("userinfo :", res);
+      })
+      .catch((err) => {
+        console.log("userinfo error :", err.response);
+      });
+  };
+
   return (
     <BrowserRouter>
       <div>
@@ -187,13 +218,14 @@ function App() {
               handleLogout={handleLogout}
               handleIsStaredDelete={handleIsStaredDelete}
               handleIsSearched={handleIsSearched}
+              getUserinfo={getUserinfo}
             />
           </Route>
           <Route path="/signup">
             <Signup LN={LN} />
           </Route>
           <Route path="/login">
-            <Login handleLogin={handleLogin} />
+            <Login handleLogin={handleLogin} getAccessToken={getAccessToken} />
           </Route>
           <Route path="/mypage">
             <Mypage />
