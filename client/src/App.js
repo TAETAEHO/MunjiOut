@@ -17,25 +17,24 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultIdx, setSearchResultIdx] = useState(-1);
-  const [accessToken, setAccessToken] = useState(null);
-  const [userinfo, setUserinfo] = useState({
-    id: "",
-    username: "",
-    email: "",
-    mobile: "",
-    address: "",
-  });
+  const aT = localStorage.getItem("accessToken");
+  // const [userinfo, setUserinfo] = useState({
+  //   id: "",
+  //   username: "",
+  //   email: "",
+  //   mobile: "",
+  //   address: "",
+  // });
+  // const infomation = JSON.parse(localStorage.getItem("userinfo"));
+  // console.log("info:", infomation);
   // ! Loaidng #1
   // const [isLoading, setIsLoading] = useState([]);
 
-  const getAccessToken = (token) => {
-    setAccessToken(token);
-  };
-  console.log("Token :", accessToken);
-
   // * Logout을 클릭하면, isLogin => false
   const handleLogout = (e) => {
+    setIsStared([]);
     setIsLogin(false);
+    setIsStared([]);
     alert("로그아웃 되었습니다.");
 
     // ! Logout Request (로그인 상태 현재 미확인)
@@ -45,52 +44,68 @@ function App() {
       withCredentials: true,
     };
     axios.post(logoutURL, logoutConfig);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userinfo");
   };
 
+  // * Loing page 에서 Login 시, isLogin을 false => true 로 변경
   const handleLogin = () => {
     setIsLogin(true);
   };
 
-  // * isLogin이 false로 변경되면, isStared rerender 되는 useEffect
-  useEffect(() => {
-    setIsStared([]);
-  }, [isLogin === false]);
+  const afterWithdrawal = () => {
+    setIsLogin(false);
+  };
+  // * isStared Array 를 리 렌더링 함수
+  const rerenderIsStared = (datas) => {
+    setIsStared(datas.data.data);
+    console.log("🔹", datas.data.data);
+  };
 
   // * stared pic이 클릭되면, 해당 stared City Card delete
-  // ! query
+  // ! Delete
   const handleIsStaredDelete = (e) => {
     const curValue = Number(e.currentTarget.getAttribute("value"));
     setIsStared(
       isStared.slice(0, curValue).concat(isStared.slice(curValue + 1))
     );
+    console.log("🟢: 지워졌나?");
+    axios
+      .post(
+        "https://localhost:4000/unsetLocation",
+        { location_name: isStared[curValue].stationName },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      )
+      .catch(console.log);
   };
 
   // * searched pic이 클릭되면, 해당 searched City Card가 isStared로 포함
-  // ! query
+  // ! Star
   const handleIsSearched = (e) => {
     const curValue = Number(e.currentTarget.getAttribute("value"));
-    console.log("🔴", isSearched[curValue]);
+    console.log("🔴", isSearched[curValue].data.stationName);
     if (isStared.length < 3) {
       setIsStared(isSearched.slice(curValue, curValue + 1).concat(isStared));
       setIsSearched(isSearched.filter((el, idx) => idx !== curValue));
 
-      console.log("🟢", accessToken);
       const setLocationURL = "https://localhost:4000/setLocation";
       const setLocationPayload = {
         location_name: isSearched[curValue].stationName,
       };
       const setLocationConfig = {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${aT}`,
           "Content-Type": "application/json",
         },
         withCredentials: true,
       };
-      console.log("🟠", setLocationPayload, setLocationConfig);
 
       axios
         .post(setLocationURL, setLocationPayload, setLocationConfig)
-        .then((res) => console.log(res));
+        .catch(console.log);
     } else {
       alert("즐겨찾기는 최대 3개까지 가능합니다.");
     }
@@ -182,22 +197,38 @@ function App() {
     }
   };
 
-  const getUserinfo = () => {
-    axios
-      .get("https://localhost:4000/userinfo", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log("userinfo :", res);
-      })
-      .catch((err) => {
-        console.log("userinfo error :", err.response);
-      });
-  };
+  console.log("-------------------------------------------------------");
+  // axios
+  //   .get("https://localhost:4000/accesstokenrequest", {
+  //     headers: {
+  //       Authorization: `Bearer ${aT}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //     withCredentials: true,
+  //   })
+  //   .then((res) => {
+  //     setIsLogin(true);
+  //     console.log("🔺", res);
+  //   })
+  //   .catch(console.log);
+
+  // * isLogin이 true라면, 선호지역 가져오기.
+  // if (isLogin) {
+  //   console.log("🟡: 됐나?!");
+  //   axios
+  //     .get("https://localhost:4000/mainpage", {
+  //       headers: {
+  //         Authorization: `Bearer ${aT}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //       withCredentials: true,
+  //     })
+  //     .then((findStars) => {
+  //       setIsStared(findStars.data.data);
+  //       console.log("🔹", findStars.data.data);
+  //     })
+  //     .catch(console.log);
+  // }
 
   return (
     <BrowserRouter>
@@ -218,17 +249,16 @@ function App() {
               handleLogout={handleLogout}
               handleIsStaredDelete={handleIsStaredDelete}
               handleIsSearched={handleIsSearched}
-              getUserinfo={getUserinfo}
             />
           </Route>
           <Route path="/signup">
             <Signup LN={LN} />
           </Route>
           <Route path="/login">
-            <Login handleLogin={handleLogin} getAccessToken={getAccessToken} />
+            <Login handleLogin={handleLogin} />
           </Route>
           <Route path="/mypage">
-            <Mypage />
+            <Mypage afterWithdrawal={afterWithdrawal} />
           </Route>
           <Route>
             <EmptyPage />
