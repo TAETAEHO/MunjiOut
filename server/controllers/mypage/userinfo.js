@@ -5,7 +5,6 @@ module.exports = async (req, res) => {
   try {
     console.log(req.body);
     const accessTokenData = isAuthorized(req);
-    console.log("accessData :", accessTokenData);
 
     if (!accessTokenData) {
       return res
@@ -14,7 +13,6 @@ module.exports = async (req, res) => {
     } else {
       // password 삭제
       delete accessTokenData.password;
-      console.log(req.body);
 
       const userInfo = await User.findOne({
         where: { id: accessTokenData.id },
