@@ -215,23 +215,25 @@ function App() {
   //   .catch(console.log);
 
   // * isLogin이 true라면, 선호지역 가져오기.
-
   console.log("🟡: 됐나?!");
-  axios
-    .get("https://localhost:4000/mainpage", {
-      headers: {
-        Authorization: `Bearer ${aT}`,
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    })
-    .then((findStars) => {
-      setIsStared(findStars.data);
-      console.log("🔹", findStars.data);
-    })
-    .catch((err) => {
-      console.log(err.response);
-    });
+
+  if (isLogin) {
+    axios
+      .get("https://localhost:4000/mainpage", {
+        headers: {
+          Authorization: `Bearer ${aT}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((findStars) => {
+        setIsStared(findStars.data);
+        console.log("🔹", findStars.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
 
   return (
     <BrowserRouter>

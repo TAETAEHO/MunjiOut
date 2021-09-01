@@ -69,7 +69,7 @@ module.exports = {
 
       function timeout(ms, promise) {
         return new Promise((resolve, reject) => {
-          const timer = setTimeout(() => {
+          const timer = Timeout(() => {
             return res.status(500).json({ message: "OpenAPI error" });
             // reject(new Error('TIMEOUT'))
           }, ms);
