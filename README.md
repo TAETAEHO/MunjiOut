@@ -6,6 +6,7 @@
 - `먼지아웃(MunjiOut)`은 즐겨찾기를 통해, 매번 검색하지 않아도 원하는 지역의 미세먼지 수치를 확인할 수 있습니다.
 - `먼지아웃(MunjiOut)`은 매일 오전 즐겨찾기에 등록된 지역의 미세먼지 정보를 메일로 받아 보실 수 있습니다.
 - `먼지아웃(MunjiOut)`은 여러분의 건강을 위한 정보를 제공합니다.
+- `WIKI` : https://github.com/codestates/MunjiOut/wiki
 
 # Team
 
