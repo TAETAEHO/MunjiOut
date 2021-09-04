@@ -1,4 +1,3 @@
-// import "./Button.css";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { media } from '../../../components/utils/_media-queries';
@@ -7,8 +6,8 @@ import { fonts, colors } from '../../../components/utils/_var';
 const Wrapper = styled.div`
   .btn {
     position: relative;
-    ${media.huge`font-size: 14px;`}
     ${media.tablet`font-size: 13px;`}
+    font-size: 14px;
     margin-top: -10px;
     margin-right: 10px;
     padding: 6px 8px 6px;
