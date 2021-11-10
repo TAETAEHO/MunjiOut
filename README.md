@@ -42,11 +42,16 @@
 # Architecture
 
 **Client-Side**
+<<<<<<< HEAD
 ![131592838-c56cc6e3-73c7-4a5c-a30e-54e7bd319f3e](https://user-images.githubusercontent.com/29108753/132075882-3a7505ad-daa3-4ce0-8136-7917ee351427.png)
+=======
+![스크린샷 2021-09-01 오후 6 41 36](https://user-images.githubusercontent.com/45756034/131649612-c0ac7909-827c-488e-b39e-12d45fb86bb7.png)
+>>>>>>> 32d0bda1f7eec09e68baf943f2948b8f158f5b0b
 
 **Server-Side**
-![system_architecture](https://user-images.githubusercontent.com/45756034/131592859-63e408ef-6098-446a-94d9-78161ada303c.png)
+![스크린샷 2021-09-01 오후 6 35 55](https://user-images.githubusercontent.com/45756034/131648862-a59bacb9-720d-4bfc-aa51-01ccd7f99a98.png)
 
+<<<<<<< HEAD
 # UI Design
 
 ### [Full UI Design Link](https://github.com/codestates/MunjiOut/wiki/UI-Design)
@@ -85,33 +90,20 @@
 
 **SignUp**
 ![1signup](https://user-images.githubusercontent.com/45756034/131840027-54dc249f-5b7f-469f-93bd-2882df392a28.gif)
+=======
+# 기능소개 Brief
+
+### [기능소개 Detail Link](https://github.com/codestates/MunjiOut/wiki/UI-Design)
+>>>>>>> 32d0bda1f7eec09e68baf943f2948b8f158f5b0b
 
 **Login**
 ![2login](https://user-images.githubusercontent.com/45756034/131838048-cc726c78-2058-41f5-828f-a02043dc2406.gif)
 
-**Logout**
-![3logout](https://user-images.githubusercontent.com/45756034/131838112-5edf12ad-7bd1-4108-ba6c-045511e847a0.gif)
-
 **Search Area(회원)**
 ![4searchuser](https://user-images.githubusercontent.com/45756034/131838214-5fadbe32-7309-4265-8bec-df18a08fec44.gif)
 
-**Search Area(비회원)**
-![7searchnotuser](https://user-images.githubusercontent.com/45756034/131838880-147776a5-561a-4d03-a89d-773a2c19749c.gif)
-
-**Search Area(같은 지역을 검색했을 경우)**
-![5searchconflict](https://user-images.githubusercontent.com/45756034/131838310-1ca0d0fb-c513-4f5d-a886-96b94afe62c5.gif)
-
 **Setting/Unsetting Favorite Area**
 ![8settingstars](https://user-images.githubusercontent.com/45756034/131838588-be793889-e666-4dad-88f3-6018159cf2e4.gif)
-
-**Setting Favorite Area(3개 초과로 선택했을 경우)**
-![6addingthreeplus](https://user-images.githubusercontent.com/45756034/131838750-d184c6dc-2183-4f0a-9862-523d09b2a462.gif)
-
-**Edit Userinfo**
-![9editmypage](https://user-images.githubusercontent.com/45756034/131838963-5f035795-5af6-4ed7-b650-9165ef21614c.gif)
-
-**Withdrawal**
-![10withdrawal](https://user-images.githubusercontent.com/45756034/131839046-0c90ab57-5001-4d36-9a2e-26a7cc0f4f32.gif)
 
 # 프로젝트 회고
 
@@ -121,6 +113,9 @@
 <summary>First Project 회고</summary>
 
 <br>
+
+<details>
+<summary>First Project 회고</summary>
 
 **프로젝트에서 아쉬웠던 점**
 
@@ -146,8 +141,11 @@
 <details>
 <summary>First Project 회고</summary>
   
+<<<<<<< HEAD
 <br>
 
+=======
+>>>>>>> 32d0bda1f7eec09e68baf943f2948b8f158f5b0b
 **프로젝트에서 아쉬웠던 점**
 
 - 처음 기획 단계에서는 저희에게 주어진 2주의 시간에 맞는, 간단한 기능을 수행하는 프로젝트를 구상했다고 생각했었습니다. 하지만 서버와 클라이언트를 연결는 과정, 그리고 배포 단계에까지 이르게 되면서 예상치 못한 이슈에 직면하기도 해 2주라는 시간이 전혀 충분한 시간이 아니었음을 깨닫게 되었습니다.  
@@ -165,14 +163,21 @@
 
 <details>
 <summary>First Project 회고</summary>
+<<<<<<< HEAD
   
 <br>
 
+=======
+>>>>>>> 32d0bda1f7eec09e68baf943f2948b8f158f5b0b
 **프로젝트에서 아쉬웠던 점**
 
 - 저희 팀에서 원하는 기능들을 효율적으로 구현하기 위해 필요한 기술 스택이 무엇이었는지 고민을 덜 한 것이 아쉬웠습니다. 프로젝트를 도중 프로젝트 처음에 생각한 것보다 관리해야할 states, props들이 많아 관리함에 있어 불편함을 느껴서 Redux의 필요성을, 컴포넌트 당 CSS파일을 만들다 보니Styled-Component의 필요성을 통감했습니다. 추후 특정 프로젝트 규모에서 어떤 스택들을 사용해야 더 효율적으로 수행할 수 있을지 처음 기획 단계에서 더 신중하게 생각하게 되었습니다. 
 - 위 내용과 비슷하게, 프로젝트를 하는 도중 더 효율적이고 좋은 개발 방향은 팀적으로 논의되고 있었지만, 팀에게 할당된 시간이 부족해 이행할 수 없었습니다. 예를들어, 외부 API로 받아오는 정보 응답으로 예상하지 못한 불편한 사항이 많이 발생했습니다. 이를 발견하고 해결할 방법도 구상되었지만, 저희 팀에게 남은 자원을 해당 문제에 소비할 수 없어 개선 포인트로 유지된 것이 아쉬웠습니다.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 32d0bda1f7eec09e68baf943f2948b8f158f5b0b
 **프로젝트에서 좋았던 점**
 - First Project는 주어진 자원이 최소한으로 주어지고, 저희는 목표만 알고 가보지 않은 길을 같이 걸어가야 했습니다. 무작정 부딪혀 안 되는걸 우리만의 방식으로 될 때까지 해결했던 시간들은 정말 좋은 경험으로 남았습니다.
 - 처음엔 비대면 방식으로 프로젝트를 기획, 개발 하는 것에 대한 의문이 많이 들었습니다. 솔직히 아직도 필요한 부분은 대면으로 진행하는 것이 더 효율적이라고 생각은 하지만, 비대면 방식으로도 프로젝트 기획, 개발이 가능하다는 걸 체험할 수 있는 기회였습니다. 
@@ -181,6 +186,7 @@
 - 프로젝트 중 팀원들과 함께 같이 문제를 해결하는 경험이 있었습니다. ‘정말 도저히 방법을 모르겠다.’ 상태까지 왔지만, 해당 내용을 포기할 수 없는 상태이므로 몇 시간이고 해결책을 강구하려고 노력했습니다. 결국, 매번 팀은 우리만의 방법을 찾게되었습니다. 끝까지 포기하지 않는 팀원들이 멋있었고, 같이 문제를 해결하는 경험을 나눠 즐거웠습니다.
 - 개인적으로 프레임워크에 대한 이해도, 효율적인 컨벤션과 코드의 짜임새에 대해 스스로 아직 많이 부족하다고 생각합니다. 하지만, 프로젝트를 통해 왜 더 프레임워크에 대한 이해가 필요한지, 효율적인 컨벤션은 어떤 것들이 있을 수 있는지, 어떤 방식의 코드가 어떤 상황에서 조금 더 효율적인지, 공부할 동기를 얻을 수 있었습니다. (정말 중요한 부분이라고 생각합니다.)
 </details>
+<<<<<<< HEAD
 
 ### 김무현
 
@@ -204,3 +210,5 @@
 - 실전에서 훨씬 더 많은 것을 배울 수 있다. 두려워하지 말고 기쁜마음으로 박살나자....
   
 </details> 
+=======
+>>>>>>> 32d0bda1f7eec09e68baf943f2948b8f158f5b0b
