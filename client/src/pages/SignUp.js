@@ -215,7 +215,6 @@ function Signup({ LN }) {
     } else {
       setCheckEmail(false);
     }
-    // console.log("email :", regExp.test(e.target.value));
   };
   const isValidPassword = (e) => {
     let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/;
@@ -224,7 +223,6 @@ function Signup({ LN }) {
     } else {
       setCheckPassword(false);
     }
-    // console.log("password :", regExp.test(e.target.value));
   };
 
   const handleCheckPassword = (e) => {
