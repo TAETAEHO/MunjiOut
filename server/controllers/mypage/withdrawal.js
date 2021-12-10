@@ -12,8 +12,6 @@ module.exports = async (req, res) => {
         where: { id: accessTokenData.id },
       });
 
-      // console.log(req.headers.cookie);
-
       res.setHeader("authorization", "");
       res.cookie("refreshToken", "");
 
