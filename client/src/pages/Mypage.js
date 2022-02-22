@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     color: rgb(45, 45, 45);
   }
   .Logo {
-    ${media.laptop`width: 250px;`} 
+    ${media.laptop`width: 250px;`}
     ${media.tablet`width: 190px;`}
     margin-top: 30px;
     margin-bottom: 40px;
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     outline: none;
   }
   .Mypage_info {
-    ${media.laptop`font-size: 17px;`} 
+    ${media.laptop`font-size: 17px;`}
     ${media.tablet`font-size: 14px;`}
     ${media.mobile`margin-left: 8px;`}
     font-size: 19px;
@@ -126,7 +126,6 @@ function Mypage({ afterWithdrawal }) {
   const [myInfo, setMyInfo] = useState({
     password: "",
   });
-  // console.log("userinfo :", userinfo);
   const handleInputValue = (key) => (e) => {
     setMyInfo({ ...myInfo, [key]: e.target.value });
   };
@@ -137,7 +136,6 @@ function Mypage({ afterWithdrawal }) {
     } else {
       setCheckPassword(false);
     }
-    // console.log("password :", regExp.test(e.target.value));
   };
   const handleCheckPassword = (e) => {
     if (e.target.value !== "" && e.target.value === myInfo.password) {
@@ -210,7 +208,12 @@ function Mypage({ afterWithdrawal }) {
   return (
     <Wrapper>
       <div className="Mypage">
-        <img src={logo} className="Logo" onClick={handleReplace} alt={logo}></img>
+        <img
+          src={logo}
+          className="Logo"
+          onClick={handleReplace}
+          alt={logo}
+        ></img>
         <div className="Mypage_container">
           <div>
             <div className="Mypage_info">이름</div>
