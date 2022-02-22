@@ -3,7 +3,6 @@ const { UserLocation } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
-  console.log("set :", req);
   try {
     const accessTokenData = isAuthorized(req);
     console.log(accessTokenData);

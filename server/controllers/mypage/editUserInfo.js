@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
           id: accessTokenData.id,
         },
       });
-      // console.log(newUserInfo.dataValues);
 
       const salt = crypto.randomBytes(64).toString("hex");
       const encryptedPassword = crypto
@@ -29,8 +28,6 @@ module.exports = async (req, res) => {
         mobile: req.body.mobile,
         address: req.body.address,
       };
-
-      // console.log(payload);
 
       await User.update(
         {
