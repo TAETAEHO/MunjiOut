@@ -248,24 +248,6 @@ function App() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(process.env.REACT_APP_API_URL + "/mainpage", {
-  //       headers: {
-  //         Authorization: `Bearer ${aT}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //       withCredentials: true,
-  //     })
-  //     .then((findStars) => {
-  //       if (findStars.data.length !== 0) {
-  //         setIsStared(findStars.data.reverse());
-  //         console.log('🔴', findStars.data.reverse());
-  //       }
-  //     })
-  //     .catch((err) => console.log('🟠', err));
-  // }, [isSearched]);
-
   return (
     <BrowserRouter>
       <div>
