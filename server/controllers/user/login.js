@@ -48,19 +48,16 @@ module.exports = async (req, res) => {
         const cookieOptions = {
           httpOnly: true,
           sameSite: "None",
-          // secure: true,
+          secure: true,
         };
 
         res.cookie("accessToken", accessToken, cookieOptions);
         res.cookie("refreshToken", refreshToken, cookieOptions);
-        // console.log(req.headers.cookie);
-        return res
-          .status(200)
-          .json({
-            accessToken,
-            refreshToken,
-            message: "logged in successfully",
-          });
+        return res.status(200).json({
+          accessToken,
+          refreshToken,
+          message: "logged in successfully",
+        });
       }
     }
   } catch (err) {
