@@ -134,7 +134,6 @@ function Login({ handleLogin }) {
               withCredentials: true,
             })
             .then((res) => {
-              // console.log("userinfo :", res.data.data);
               localStorage.setItem("userinfo", JSON.stringify(res.data.data));
             })
             .catch((err) => {
